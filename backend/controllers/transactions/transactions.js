@@ -71,16 +71,7 @@ exports.filterTransactions = async(req, res) {
 exports.addTransaction = async (req, res) => {
     try {
         // get transaction data from request body according to transaction model
-        // console.log(req.body);
-        // get transaction data from request body according to transaction model
         const { description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
-        console.log(description);
-        // let newTransaction = await Transaction.create({
-        //     ...req.body,
-        // });
-        console.log({...req.body});
-        console.log(req.user);
-        // console.log(newTransaction);
         // save transaction to database
         const newTransaction = Transaction.create({
             user_id: req.user.user_id,
@@ -97,15 +88,6 @@ exports.addTransaction = async (req, res) => {
             merchant: merchant,
             comments: comments,
           });
-        //   newTransaction.save(function(err,res){
-        //     if (err){
-        //         console.log(err);
-        //     }
-        //     else{
-        //         return res.status(201).json({
-        //             success: true,
-        //         });
-        //     }});
         return res.status(201).json({
             success: true,
         });
