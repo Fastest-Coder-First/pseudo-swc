@@ -1,7 +1,7 @@
 # Pseudo SWC
 
 ### Github Copilot Examples
-
+#### We haved used github copilot a lot in our submission you can check images folder to know some of our use cases or check comments in our code to see examples
 * Example of copilot used to generate routes
 <img width="1792" alt="Screenshot 2023-06-24 at 6 03 27 PM" src="https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/324c69b7-807b-43e6-9f00-4302c138fed6">
 
