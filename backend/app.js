@@ -15,8 +15,11 @@ const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
 
 const app = express();
+const cors = require('cors');
+
 
 app.use(express.json({ limit: "50mb" }));
+app.use(cors());
 
 app.post("/register", registerfnc);
 
