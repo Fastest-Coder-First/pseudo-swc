@@ -2,11 +2,11 @@
 // code for getting trnasactions get request controller function
 exports.getTransactions = async (req, res) => {
     try {
-        const transactions = await Transaction.find();
+        const transactions = await User.findById(req.user.user_id).transaction_list;
         return res.status(200).json({
-        success: true,
-        count: transactions.length,
-        data: transactions,
+            success: true,
+            count: transactions.length,
+            data: transactions,
         });
     } catch (err) {
         return res.status(500).json({
@@ -20,7 +20,7 @@ exports.getTransactions = async (req, res) => {
 exports.addTransaction = async (req, res) => {
     try {
         const { text, amount } = req.body;
-        const transaction = await Transaction.create(req.body);
+        const transactions = await User.findById(req.user.user_id).transaction_list;
         return res.status(201).json({
             success: true,
             data: transaction,
@@ -44,7 +44,7 @@ exports.addTransaction = async (req, res) => {
 // code for deleting trnasactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
-        const transaction = await Transaction.findById(req.params.id);
+        const transactions = await User.findById(req.user.user_id).transaction_list;
         if(!transaction) {
             return res.status(404).json({
                 success: false,
@@ -68,7 +68,7 @@ exports.deleteTransaction = async (req, res) => {
 exports.updateTransaction = async (req, res) => {
     try {
         const { text, amount } = req.body;
-        const transaction = await Transaction.findById(req.params.id);
+        const transactions = await User.findById(req.user.user_id).transaction_list;
         if(!transaction) {
             return res.status(404).json({
                 success: false,
