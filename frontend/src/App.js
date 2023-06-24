@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<AuthProvider><Dashboard /></AuthProvider> } />
+          <Route path="/*" element={<AuthProvider><Dashboard /></AuthProvider> } />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<AuthProvider> <LoginPage /></AuthProvider>} />
         </Routes>
