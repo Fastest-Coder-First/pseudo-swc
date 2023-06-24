@@ -1,3 +1,5 @@
+
+
 exports.getShares = async (req, res) => {
     try {
         const transactions = await Transaction.find({user_id: req.user.user_id}).transaction_list;
