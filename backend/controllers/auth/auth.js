@@ -48,7 +48,7 @@ const registerfnc = async (req, res) => {
     } catch (err) {
       console.log(err);
     }
-}
+};
 
 const loginfnc  =async (req, res) => {
     try {
@@ -77,8 +77,9 @@ const loginfnc  =async (req, res) => {
   
         // user
         res.status(200).json(user);
+      }else{
+        res.status(400).send("Invalid Credentials");
       }
-      res.status(400).send("Invalid Credentials");
     } catch (err) {
       console.log(err);
     }

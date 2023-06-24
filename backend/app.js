@@ -2,16 +2,24 @@ const path = require('path')
 require('dotenv').config()
 require("./config/database").connect();
 const {loginfnc, registerfnc} = require("./controllers/auth/auth");
+// import all functions from transaction controller
+const {
+    getTransactions, 
+    addTransaction,
+    deleteTransaction,
+    updateTransaction
+} = require("./controllers/transactions/transactions");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const User = require("./model/user");
 const auth = require("./middleware/auth");
 
 const app = express();
+const cors = require('cors');
+
 
 app.use(express.json({ limit: "50mb" }));
+app.use(cors());
 
 app.post("/register", registerfnc);
 
@@ -52,7 +60,6 @@ app.delete("/deletetransaction/:id", auth, deleteTransaction);
 // route for updating transaction
 app.put("/updatetransaction/:id", auth, updateTransaction);
     
-
 // This should be the last route else any after it won't work
 app.use("*", (req, res) => {
   res.status(404).json({

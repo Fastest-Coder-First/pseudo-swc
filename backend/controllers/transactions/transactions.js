@@ -9,7 +9,7 @@ exports.getTransactions = async (req, res) => {
         return res.status(200).json({
             success: true,
             count: transactions.length,
-            data: transactions,
+            data: createDisplayJSON(transactions),
         });
     } catch (err) {
         return res.status(500).json({
@@ -63,16 +63,10 @@ exports.addTransaction = async (req, res) => {
     }
 }
 
-// code for deleting trnasactions delete request controller function
+// code for deleting transactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
-        var transactions = await User.findById(req.user.user_id).transaction_list;
-        // get id from request url params
-        console.log(transactions);
-        // delte by id from transactions array
-        // transactions
-        // const transaction = await transactions.=(req.params.id);
-
+        const transactions = await User.findById(req.user.user_id).transaction_list;
         if(!transaction) {
             return res.status(404).json({
                 success: false,
