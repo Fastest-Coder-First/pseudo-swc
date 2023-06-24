@@ -1,7 +1,6 @@
-const { Schema, model } = require("mongoose");
-const {User} = require("./user");
+const mongoose = require("mongoose");
 // Transaction schema for MongoDB
-const transactionSchema = new Schema({
+const transactionSchema = new mongoose.Schema({
     user_id:{
         type: mongoose.ObjectId,
         ref: 'User'
@@ -22,6 +21,7 @@ const transactionSchema = new Schema({
     comments: { type: String, default: null },
 });
 
-module.exports = { transactionSchema };
+module.exports =  mongoose.model("transaction", transactionSchema);
+
 
 
