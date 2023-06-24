@@ -7,6 +7,11 @@ const transactionSchema = new Schema({
         ref: 'User'
     },
 
+    date: { type: Date, default: Date.now },
+    description: { type: String, default: null },
+    category: { type: Number },
+    type: { type: Number },
+
     amount: { type: String, default: null },
     currency: { type: String, default: 'INR' },
     status: { type: String, default: null },

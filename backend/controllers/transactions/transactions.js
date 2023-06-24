@@ -66,7 +66,7 @@ exports.addTransaction = async (req, res) => {
 // code for deleting transactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
-        const transactions = await User.findById(req.user.user_id).transaction_list;
+        const transactions = await Transaction.findById(req.user.user_id).transaction_list;
         if(!transaction) {
             return res.status(404).json({
                 success: false,
@@ -110,6 +110,20 @@ exports.updateTransaction = async (req, res) => {
             error: "Server Error",
         });
     }   
+}
+
+function createDisplayJSON (input) {
+    return new Object ({
+        user_id: input.user_id,
+        transaction_id: input._id,
+        amount: input.currency + String(amount),
+        status: input.status,
+        method: input.method,
+        card: input.card,
+        bank: input.bank,
+        merchant: input.merchant,
+        comments: input.comments,
+    });
 }
 
 
