@@ -71,7 +71,7 @@ exports.filterTransactions = async(req, res) => {
 exports.addTransaction = async (req, res) => {
     try {
         // get transaction data from request body according to transaction model
-        const { description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
+        const { description , amount, type, category, status, method, card, bank, merchant, comments, currency, date  } = req.body;
         // save transaction to database
         const newTransaction = Transaction.create({
             user_id: req.user.user_id,
@@ -79,7 +79,7 @@ exports.addTransaction = async (req, res) => {
             amount: amount,
             description: description,
             currency: currency,
-            category: catagory,
+            category: category,
             type: type,
             status: status,
             method: method,
