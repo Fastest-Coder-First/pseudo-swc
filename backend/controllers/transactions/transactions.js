@@ -20,20 +20,58 @@ exports.getTransactions = async (req, res) => {
     }
 }
 
+exports.filterTransactions = async(req, res) {
+  const filterOptions = req.body.filter; // Assuming filter options are sent in the request body
+
+  try {
+    const query = Transaction.find();
+
+    // Filter entries since a certain day
+    if (filterOptions.sinceDate) {
+      query.where('date').gte(filterOptions.sinceDate);
+    }
+
+    // Filter entries with specific categories
+    if (filterOptions.categories && filterOptions.categories.length > 0) {
+      query.where('category').in(filterOptions.categories);
+    }
+
+    // Filter entries with specific types
+    if (filterOptions.types && filterOptions.types.length > 0) {
+      query.where('type').in(filterOptions.types);
+    }
+
+    // Filter entries with specific modes of payment
+    if (filterOptions.paymentModes && filterOptions.paymentModes.length > 0) {
+      query.where('paymentMode').in(filterOptions.paymentModes);
+    }
+
+    // Filter entries with amount greater than a value
+    if (filterOptions.minAmount) {
+      query.where('amount').gt(filterOptions.minAmount);
+    }
+
+    // Filter entries with a specific user ID
+    if (filterOptions.userId) {
+      query.where('user_id').equals(filterOptions.userId);
+    }
+
+    // Execute the query
+    const filteredTransactions = await query.exec();
+
+    // Return the filtered transactions
+    return res.json(filteredTransactions);
+  } catch (error) {
+    console.error('Error filtering transactions:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 // code for adding trnasactions post request controller function
 exports.addTransaction = async (req, res) => {
     try {
         // get transaction data from request body according to transaction model
-        // console.log(req.body);
-        // get transaction data from request body according to transaction model
         const { description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
-        console.log(description);
-        // let newTransaction = await Transaction.create({
-        //     ...req.body,
-        // });
-        console.log({...req.body});
-        console.log(req.user);
-        // console.log(newTransaction);
         // save transaction to database
         const newTransaction = Transaction.create({
             user_id: req.user.user_id,
@@ -50,15 +88,6 @@ exports.addTransaction = async (req, res) => {
             merchant: merchant,
             comments: comments,
           });
-        //   newTransaction.save(function(err,res){
-        //     if (err){
-        //         console.log(err);
-        //     }
-        //     else{
-        //         return res.status(201).json({
-        //             success: true,
-        //         });
-        //     }});
         return res.status(201).json({
             success: true,
         });

@@ -22,7 +22,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import { AuthContext } from '../../components/Auth/AuthContext';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from './Main';
 import Expenses from './Expenses';
 import Income from './Income';
@@ -83,12 +83,13 @@ export default function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const navigate = useNavigate();
   const { isLoggedIn, user } = React.useContext(AuthContext);
   if (!isLoggedIn) {
     // Redirect to login page or show access denied message
-    return <h1>Please login to access the Dashboard</h1>;
+    navigate('/login');
+    return ;
   }
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
