@@ -20,7 +20,7 @@ exports.getTransactions = async (req, res) => {
     }
 }
 
-exports.filterTransactions = async(req, res) {
+exports.filterTransactions = async(req, res) => {
   const filterOptions = req.body.filter; // Assuming filter options are sent in the request body
 
   try {
