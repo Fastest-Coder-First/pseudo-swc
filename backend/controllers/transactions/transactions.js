@@ -1,12 +1,12 @@
 
-// code for getting trnasactions get request controller function
+// code for getting transactions get request controller function
 exports.getTransactions = async (req, res) => {
     try {
         const transactions = await User.findById(req.user.user_id).transaction_list;
         return res.status(200).json({
             success: true,
             count: transactions.length,
-            data: transactions,
+            data: createDisplayJSON(transactions),
         });
     } catch (err) {
         return res.status(500).json({
@@ -16,7 +16,7 @@ exports.getTransactions = async (req, res) => {
     }
 }
 
-// code for adding trnasactions post request controller function
+// code for adding transactions post request controller function
 exports.addTransaction = async (req, res) => {
     try {
         // get transaction data from request body according to transaction model
@@ -54,7 +54,7 @@ exports.addTransaction = async (req, res) => {
     }
 }
 
-// code for deleting trnasactions delete request controller function
+// code for deleting transactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
         const transactions = await User.findById(req.user.user_id).transaction_list;
@@ -77,7 +77,7 @@ exports.deleteTransaction = async (req, res) => {
     }
 }
 
-// code for updating trnasactions put request controller function
+// code for updating transactions put request controller function
 exports.updateTransaction = async (req, res) => {
     try {
         const { text, amount } = req.body;
@@ -103,3 +103,17 @@ exports.updateTransaction = async (req, res) => {
     }   
 }
 
+function createDisplayJSON (input) {
+    return new Object ({
+        description: input.description,
+        type: input.type, // Enum
+        category: input.category, // Enum
+        amount: input.currency + String(input.amount),
+        status: input.status, // Enum
+        method: input.method, // Enum
+        card: input.card,
+        bank: input.bank,
+        merchant: input.merchant,
+        comments: input.comments,
+    });
+}
