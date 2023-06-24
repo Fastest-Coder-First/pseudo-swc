@@ -5,13 +5,14 @@ const Transaction = require("../../model/transaction");
 // code for getting trnasactions get request controller function
 exports.getTransactions = async (req, res) => {
     try {
-        const transactions = await Transaction.find({ userId: req.user.user_id }).exec();
+        const transactions = await Transaction.find({ user_id: req.user.user_id }).exec();
         return res.status(200).json({
             success: true,
             count: transactions.length,
-            data: createDisplayJSON(transactions),
+            data: transactions,
         });
     } catch (err) {
+        console.log(err);
         return res.status(500).json({
             success: false,
             error: "Server Error",
@@ -81,18 +82,8 @@ exports.addTransaction = async (req, res) => {
 // code for deleting transactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
-        const transactions = await Transaction.findByIdAndDelete(req.transaction_id).exec();
-        if(!transactions) {
-            return res.status(404).json({
-                success: false,
-                error: "No transaction found",
-            });
-        }
-        await transactions.remove();
-        return res.status(200).json({
-            success: true,
-            data: {},
-        });
+        await Transaction.findByIdAndDelete(req.params.id).exec();
+        return res.status(200);
     } catch (err) {
         return res.status(500).json({
             success: false,
@@ -103,20 +94,25 @@ exports.deleteTransaction = async (req, res) => {
 
 // code for updating trnasactions put request controller function
 exports.updateTransaction = async (req, res) => {
-    const transactionId = req.body.transaction_id; // Assuming transaction_id is part of the URL path
+    // const transactionId = req.body.transaction_id; // Assuming transaction_id is part of the URL path
     const updatedData = req.body; // Assuming the updated data is sent in the request body
-
+    // get id from request params
+    const id = req.params.id;
     try {
         // Find the transaction by ID and update the fields
+        const transaction = await Transaction.find({_id : id, user_id: req.user.user_id }).exec();
+        if(transaction.length === 0) {
+            return res.status(404).json({ error: 'Transaction not found' });
+        }
         const updatedTransaction = await Transaction.findByIdAndUpdate(
-        transactionId,
+        id,
         updatedData,
         { new: true }
         );
 
         if (!updatedTransaction) {
         // Handle case when the transaction is not found
-        return res.status(404).json({ error: 'Transaction not found' });
+            return res.status(404).json({ error: 'Transaction not found' });
         }
 
         // Transaction updated successfully
@@ -128,23 +124,6 @@ exports.updateTransaction = async (req, res) => {
     }
 }
 
-function createDisplayJSON (input) {
-    return new Object ({
-        user_id: input.user_id,
-        transaction_id: input._id,
-        date: input.date,
-        description: input.description,
-        category: input.category,
-        type: input.type,
-        amount: input.currency + String(amount),
-        status: input.status,
-        method: input.method,
-        card: input.card,
-        bank: input.bank,
-        merchant: input.merchant,
-        comments: input.comments,
-    });
-}
 
 
 
