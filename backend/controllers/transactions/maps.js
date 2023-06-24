@@ -44,7 +44,7 @@ const categories = {
         [19, "Retirement Savings"],
         [20, "Other"]
       ]),
-    investments: new Map new Map([
+    investments: new Map([
         [1, "Stocks"],
         [2, "Bonds"],
         [3, "Real Estate"],

@@ -82,13 +82,13 @@ exports.addTransaction = async (req, res) => {
 exports.deleteTransaction = async (req, res) => {
     try {
         const transactions = await Transaction.findByIdAndDelete(req.transaction_id).exec();
-        if(!transaction) {
+        if(!transactions) {
             return res.status(404).json({
                 success: false,
                 error: "No transaction found",
             });
         }
-        await transaction.remove();
+        await transactions.remove();
         return res.status(200).json({
             success: true,
             data: {},
@@ -103,28 +103,47 @@ exports.deleteTransaction = async (req, res) => {
 
 // code for updating trnasactions put request controller function
 exports.updateTransaction = async (req, res) => {
+    const transactionId = req.body.transaction_id; // Assuming transaction_id is part of the URL path
+    const updatedData = req.body; // Assuming the updated data is sent in the request body
+
     try {
-        const { text, amount } = req.body;
-        const transactions = await User.findById(req.user.user_id).transaction_list;
-        if(!transaction) {
-            return res.status(404).json({
-                success: false,
-                error: "No transaction found",
-            });
+        // Find the transaction by ID and update the fields
+        const updatedTransaction = await Transaction.findByIdAndUpdate(
+        transactionId,
+        updatedData,
+        { new: true }
+        );
+
+        if (!updatedTransaction) {
+        // Handle case when the transaction is not found
+        return res.status(404).json({ error: 'Transaction not found' });
         }
-        transaction.text = text;
-        transaction.amount = amount;
-        await transaction.save();
-        return res.status(200).json({
-            success: true,
-            data: transaction,
-        });
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            error: "Server Error",
-        });
-    }   
+
+        // Transaction updated successfully
+        return res.status(200).json({ transaction: updatedTransaction });
+    } catch (error) {
+        // Handle any errors that occurred during the update
+        console.error('Error updating transaction:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+function createDisplayJSON (input) {
+    return new Object ({
+        user_id: input.user_id,
+        transaction_id: input._id,
+        date: input.date,
+        description: input.description,
+        category: input.category,
+        type: input.type,
+        amount: input.currency + String(amount),
+        status: input.status,
+        method: input.method,
+        card: input.card,
+        bank: input.bank,
+        merchant: input.merchant,
+        comments: input.comments,
+    });
 }
 
 
