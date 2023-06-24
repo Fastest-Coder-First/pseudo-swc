@@ -7,7 +7,8 @@ const {
     getTransactions, 
     addTransaction,
     deleteTransaction,
-    updateTransaction
+    updateTransaction,
+    filterTransactions
 } = require("./controllers/transactions/transactions");
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -52,13 +53,17 @@ app.post("/logout", auth, async (req, res) => {
 app.post("/addTransaction", auth, addTransaction);
 
 // route for getting transactions
-app.get("/gettransactions", auth, getTransactions);
+app.get("/getTransactions", auth, getTransactions);
 
 // route for deleting transaction
-app.delete("/deletetransaction/:id", auth, deleteTransaction);
+app.delete("/deleteTransaction/:id", auth, deleteTransaction);
 
 // route for updating transaction
-app.put("/updatetransaction/:id", auth, updateTransaction);
+app.put("/updateTransaction/:id", auth, updateTransaction);
+
+// route for filtering some results
+app.put("/filterTransactions", auth, filterTransactions);
+
     
 // This should be the last route else any after it won't work
 app.use("*", (req, res) => {

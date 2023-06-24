@@ -20,6 +20,53 @@ exports.getTransactions = async (req, res) => {
     }
 }
 
+exports.filterTransactions = async(req, res) {
+  const filterOptions = req.body.filter; // Assuming filter options are sent in the request body
+
+  try {
+    const query = Transaction.find();
+
+    // Filter entries since a certain day
+    if (filterOptions.sinceDate) {
+      query.where('date').gte(filterOptions.sinceDate);
+    }
+
+    // Filter entries with specific categories
+    if (filterOptions.categories && filterOptions.categories.length > 0) {
+      query.where('category').in(filterOptions.categories);
+    }
+
+    // Filter entries with specific types
+    if (filterOptions.types && filterOptions.types.length > 0) {
+      query.where('type').in(filterOptions.types);
+    }
+
+    // Filter entries with specific modes of payment
+    if (filterOptions.paymentModes && filterOptions.paymentModes.length > 0) {
+      query.where('paymentMode').in(filterOptions.paymentModes);
+    }
+
+    // Filter entries with amount greater than a value
+    if (filterOptions.minAmount) {
+      query.where('amount').gt(filterOptions.minAmount);
+    }
+
+    // Filter entries with a specific user ID
+    if (filterOptions.userId) {
+      query.where('user_id').equals(filterOptions.userId);
+    }
+
+    // Execute the query
+    const filteredTransactions = await query.exec();
+
+    // Return the filtered transactions
+    return res.json(filteredTransactions);
+  } catch (error) {
+    console.error('Error filtering transactions:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 // code for adding trnasactions post request controller function
 exports.addTransaction = async (req, res) => {
     try {
