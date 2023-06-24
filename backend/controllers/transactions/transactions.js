@@ -127,6 +127,10 @@ function createDisplayJSON (input) {
     return new Object ({
         user_id: input.user_id,
         transaction_id: input._id,
+        date: input.date,
+        description: input.description,
+        category: input.category,
+        type: input.type,
         amount: input.currency + String(amount),
         status: input.status,
         method: input.method,
