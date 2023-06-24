@@ -27,14 +27,6 @@ This document aims to summarize the functioning of our product - a feature-rich 
 
 
 
-### Architure flow
-
-* Architure 
-![WhatsApp Image 2023-06-24 at 18 07 36](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/3d28b22a-d6cb-4592-9d15-c75fcdbf22d3)
-
-* Backend flow
-![WhatsApp Image 2023-06-24 at 18 08 07](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/1bd20519-ec3b-4d89-a389-4fe29dd79d04)
-
 # Summary
 
 This document aims to summarize the functioning of our product - a feature-rich personal finance tracker. This product was built solely using Javascript, HTML and CSS. It provides a comprehensive description of its architecture and usage. This module allows users to create various kinds of transactions – expenses, incomes, and investments.
