@@ -154,10 +154,10 @@ export default function Dashboard() {
         </Drawer>
         {/* Set up a router here to display the different pages */}
         <Routes>
-          <Route exact path="/" element={<Main userData ={user}/>}></Route>
-          <Route exact path="/expenses" element={<Expenses userData ={user}/>}></Route>
-          <Route exact path="/income" element={<Income userData ={user}/>}></Route>
-          <Route exact path="/investment" element={<Investment userData ={user}/>}></Route>
+          <Route exact path="/" element={<Main />}></Route>
+          <Route exact path="/expenses" element={<Expenses />}></Route>
+          <Route exact path="/income" element={<Income />}></Route>
+          <Route exact path="/investment" element={<Investment />}></Route>
         </Routes>
 
       </Box>

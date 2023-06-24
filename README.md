@@ -4,6 +4,7 @@
 
 This document aims to summarize the functioning of our product - a feature-rich personal finance tracker. This product was built solely using Javascript, HTML and CSS. It provides a comprehensive description of its architecture and usage. This module allows users to create various kinds of transactions – expenses, incomes, and investments.
 
+Link to the demonstration: [https://drive.google.com/file/d/1-5XzqYpXMlSHIwLeB0_g4J_LDP3nza_F/view](https://drive.google.com/file/d/1-5XzqYpXMlSHIwLeB0_g4J_LDP3nza_F/view)
 ### Github Copilot Examples
 #### We haved used github copilot a lot in our submission you can check images folder to know some of our use cases or check comments in our code to see examples
 * Example of copilot used to generate routes

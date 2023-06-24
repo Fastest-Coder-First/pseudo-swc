@@ -1,27 +1,36 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 import Title from './Title';
+import CreateTransactionModal from './CreateTransactionModal';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 export default function Deposits() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const handleClink = () => {
+    setIsOpen(!isOpen);
+  }
+  const handleClose = () => {
+    setIsOpen(false);
+  }
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Recent Expenses</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        30240.00 INR
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        on 15 March, 2019
+        {new Date().toDateString()}
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
+        <Button color="primary" href="#" onClick={handleClink}>
+          Add Expense
+        </Button>
       </div>
+      {isOpen && <div>
+        <CreateTransactionModal handleClose = {handleClose} open ={isOpen}/>
+      </div>}
     </React.Fragment>
   );
 }

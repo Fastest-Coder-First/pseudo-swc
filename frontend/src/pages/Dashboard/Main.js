@@ -21,8 +21,161 @@ import { mainListItems, secondaryListItems } from './listitems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-const Main = (props) => {
-  
+
+const Main = () => {
+  const expenses = [
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 800,
+      description: 'Groceries',
+      currency: 'INR',
+      category: 5,
+      type: 2,
+      status: 12,
+      method: 7,
+      card: 'Visa',
+      bank: 'Chase Bank',
+      merchant: 'Supermarket',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 2500,
+      description: 'Dinner with friends',
+      currency: 'INR',
+      category: 9,
+      type: 1,
+      status: 3,
+      method: 17,
+      card: 'Mastercard',
+      bank: 'Wells Fargo',
+      merchant: 'Restaurant',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 5500,
+      description: 'Holiday accommodation',
+      currency: 'INR',
+      category: 14,
+      type: 3,
+      status: 6,
+      method: 5,
+      card: 'American Express',
+      bank: 'CitiBank',
+      merchant: 'Hotel',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 120,
+      description: 'Books',
+      currency: 'INR',
+      category: 3,
+      type: 2,
+      status: 10,
+      method: 9,
+      card: 'Visa',
+      bank: 'US Bank',
+      merchant: 'Online Bookstore',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 9200,
+      description: 'Vacation expenses',
+      currency: 'INR',
+      category: 17,
+      type: 1,
+      status: 2,
+      method: 11,
+      card: 'Discover',
+      bank: 'Wells Fargo',
+      merchant: 'Travel Agency',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 75,
+      description: 'Movie tickets',
+      currency: 'INR',
+      category: 11,
+      type: 3,
+      status: 15,
+      method: 19,
+      card: 'Visa',
+      bank: 'Bank of America',
+      merchant: 'Cinema',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 3100,
+      description: 'Home improvement',
+      currency: 'INR',
+      category: 6,
+      type: 2,
+      status: 8,
+      method: 16,
+      card: 'Mastercard',
+      bank: 'Chase Bank',
+      merchant: 'Home Improvement Store',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 95,
+      description: 'Gym membership',
+      currency: 'INR',
+      category: 10,
+      type: 1,
+      status: 5,
+      method: 4,
+      card: 'American Express',
+      bank: 'CitiBank',
+      merchant: 'Fitness Center',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 680,
+      description: 'Restaurant lunch',
+      currency: 'INR',
+      category: 8,
+      type: 3,
+      status: 13,
+      method: 18,
+      card: 'Visa',
+      bank: 'US Bank',
+      merchant: 'Restaurant',
+      comments: '',
+    },
+    {
+      user_id: '64969239bf68911b25345745',
+      date: '2023-06-24',
+      amount: 4200,
+      description: 'Electronics purchase',
+      currency: 'INR',
+      category: 16,
+      type: 2,
+      status: 4,
+      method: 14,
+      card: 'Discover',
+      bank: 'Bank of America',
+      merchant: 'Electronics Store',
+      comments: '',
+    }
+  ];
+  const [transactions, setTransactions] = React.useState(expenses);
     return (
         <Box
           component="main"
@@ -65,7 +218,7 @@ const Main = (props) => {
               </Grid>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  <Orders data={transactions}/>
                 </Paper>
               </Grid>
             </Grid>

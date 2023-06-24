@@ -9,15 +9,17 @@ function createData(time, amount) {
 }
 
 const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData(1, 0),
+  createData(3, 3000),
+  createData(5, 6000),
+  createData(6, 8000),
+  createData(7, 15000),
+  createData(9, 20000),
+  createData(10, 24000),
+  createData(15, 24000),
+  createData(20, 28000),
+  createData(24, 30000),
+  createData(30, undefined),
 ];
 
 export default function Chart() {
@@ -54,7 +56,7 @@ export default function Chart() {
                 ...theme.typography.body1,
               }}
             >
-              Sales ($)
+              Amount
             </Label>
           </YAxis>
           <Line
