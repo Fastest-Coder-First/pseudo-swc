@@ -36,7 +36,9 @@ export default function LoginPage() {
         const userData = {
           email: response.data.email,
           firstName: response.data.first_name,
-          lastName: response.data.last_name
+          lastName: response.data.last_name,
+          id: response.data._id,
+          token: response.data.token
         }
         login(userData);
         navigate('/');
