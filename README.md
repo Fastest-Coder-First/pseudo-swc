@@ -1,5 +1,9 @@
 # Pseudo SWC
 
+# Summary
+
+This document aims to summarize the functioning of our product - a feature-rich personal finance tracker. This product was built solely using Javascript, HTML and CSS. It provides a comprehensive description of its architecture and usage. This module allows users to create various kinds of transactions – expenses, incomes, and investments.
+
 ### Github Copilot Examples
 #### We haved used github copilot a lot in our submission you can check images folder to know some of our use cases or check comments in our code to see examples
 * Example of copilot used to generate routes
@@ -44,6 +48,14 @@ At every step we were prompted to include the right files before proceeding to u
 Implementing endpoints for API calls has never been easier. We did not need to google how an API worked – GitHub copilot knew exactly how and that allowed us to focus our efforts on the ideation instead of being bothered by the exact semantics of the API.
 
 Copilot even allowed us to conveniently generate test cases to test components of our code. A simple natural language comment generated them iteratively and helped us debug with much higher efficiency. It indeed sped up a lot of routine tasks and let us double down on innovating as much as possible in the competitive time frame.
+
+### Architure flow
+
+* Architure 
+![WhatsApp Image 2023-06-24 at 18 07 36](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/3d28b22a-d6cb-4592-9d15-c75fcdbf22d3)
+
+* Backend flow
+![WhatsApp Image 2023-06-24 at 18 08 07](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/1bd20519-ec3b-4d89-a389-4fe29dd79d04)
 
 # Architecture and Usage
 
