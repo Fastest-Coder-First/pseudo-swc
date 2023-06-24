@@ -21,7 +21,8 @@ import { mainListItems, secondaryListItems } from './listitems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-const Main = () => {
+const Main = (props) => {
+  
     return (
         <Box
           component="main"
