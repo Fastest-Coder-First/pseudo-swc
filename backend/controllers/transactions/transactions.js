@@ -6,7 +6,7 @@ exports.getTransactions = async (req, res) => {
         return res.status(200).json({
             success: true,
             count: transactions.length,
-            data: transactions,
+            data: createDisplayJSON(transactions),
         });
     } catch (err) {
         return res.status(500).json({
@@ -101,4 +101,19 @@ exports.updateTransaction = async (req, res) => {
             error: "Server Error",
         });
     }   
+}
+
+function createDisplayJSON (input) {
+    return new Object ({
+        description: input.description,
+        type: input.type,
+        category: input.category,
+        amount: input.currency + String(input.amount),
+        status: input.status,
+        method: input.method,
+        card: input.card,
+        bank: input.bank,
+        merchant: input.merchant,
+        comments: input.comments,
+    });
 }
