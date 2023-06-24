@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 // import model user
-const User = require("../model/user");
+const {User} = require("../model/user");
 const config = process.env;
 
 const verifyToken = async (req, res, next) => {

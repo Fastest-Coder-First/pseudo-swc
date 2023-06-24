@@ -1,5 +1,5 @@
 // import transaction model
-const {User, Transaction} = require("../../model/user");
+const Transaction = require("../../model/transaction");
 
 
 // code for getting trnasactions get request controller function
@@ -25,16 +25,17 @@ exports.addTransaction = async (req, res) => {
         // get transaction data from request body according to transaction model
         // console.log(req.body);
         // get transaction data from request body according to transaction model
-        const { user_id, description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
+        const { description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
         console.log(description);
         // let newTransaction = await Transaction.create({
         //     ...req.body,
         // });
         console.log({...req.body});
+        console.log(req.user);
         // console.log(newTransaction);
         // save transaction to database
-        const newTransaction = new Transaction({
-            user_id: user_id,
+        const newTransaction = Transaction.create({
+            user_id: req.user.user_id,
             date: date,
             amount: amount,
             description: description,
@@ -48,15 +49,18 @@ exports.addTransaction = async (req, res) => {
             merchant: merchant,
             comments: comments,
           });
-          newTransaction.save(function(err,res){
-            if (err){
-                console.log(err);
-            }
-            else{
-                return res.status(201).json({
-                    success: true,
-                });
-            }});
+        //   newTransaction.save(function(err,res){
+        //     if (err){
+        //         console.log(err);
+        //     }
+        //     else{
+        //         return res.status(201).json({
+        //             success: true,
+        //         });
+        //     }});
+        return res.status(201).json({
+            success: true,
+        });
     } catch (err) {
         if(err.name === 'ValidationError') {
             const messages = Object.values(err.errors).map(val => val.message);
