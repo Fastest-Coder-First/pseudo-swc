@@ -232,3 +232,18 @@ exports.updateTransaction = async (req, res) => {
 //         method: "cash",
 //         card: "none",
 //         bank: "none",
+//      merchant: "none",
+//         comments: "none",
+//     },
+//     {
+//         id: 3,
+//         description: "Salary",
+//         type: "income",
+//         category: "income",
+//         amount: 100000,
+//         status: "cleared",
+//         method: "cash",
+//         card: "none",
+//         bank: "none",
+//       
+

@@ -56,8 +56,13 @@ app.post("/addTransaction", auth, addTransaction);
 // route for getting transactions
 app.get("/getTransactions", auth, getTransactions);
 
+// route for getting income
 app.get("/getIncome", auth, getIncome);
+
+// route for getting expenses
 app.get("/getExpenses", auth, getExpenses);
+
+// route for getting investment
 app.get("/getInvestment", auth, getInvestment);
 
 // route for deleting transaction
