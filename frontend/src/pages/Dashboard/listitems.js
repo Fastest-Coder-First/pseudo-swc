@@ -35,12 +35,6 @@ export const mainListItems = (
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="All Transactions" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
         <InsightsIcon />
       </ListItemIcon>
       <ListItemText primary="Advanced Insights" />
