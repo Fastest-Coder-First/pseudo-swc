@@ -13,12 +13,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-
-
+import { AuthContext } from '../components/Auth/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
+
+  const { login } = React.useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,7 +30,18 @@ export default function LoginPage() {
       email: data.get('email'),
       password: data.get('password'),
     }).then(function (response) {
-      console.log(response.data);
+      console.log(response);
+      if (response.status === 200) {
+        login(response.data.user);
+        const userData = {
+          email: response.data.email,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name
+        }
+        login(userData);
+        navigate('/');
+        
+      }
     })
     .catch(function (error) {
       console.log(error);
