@@ -1,12 +1,12 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 
 const CreateTransactionModal = ({ open, onClose }) => {
   const formik = useFormik({
     initialValues: {
       amount: '',
-      currency: 'INR',
+      currency: '',
       status: '',
       category: '',
       type: '',

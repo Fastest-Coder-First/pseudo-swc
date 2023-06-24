@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -21,7 +21,20 @@ import { mainListItems, secondaryListItems } from './listitems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import AddIcon from '@mui/icons-material/Add';
+import CreateTransactionModal from '../CreateTransactionModal';
+
 const Investment = () => {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const handleAddClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
     return (
         <Box
           component="main"
@@ -38,16 +51,19 @@ const Investment = () => {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={8} lg={1}>
                 <Paper
                   sx={{
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 40,
                   }}
                 >
-                  <Chart />
+                  <IconButton onClick={handleAddClick}>
+                    <AddIcon />
+                  </IconButton>
+                  {/* <Chart /> */}
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
@@ -67,6 +83,7 @@ const Investment = () => {
                   <Orders />
                 </Paper>
               </Grid>
+              <CreateTransactionModal open={modalOpen} onClose={handleCloseModal} />
             </Grid>
           </Container>
         </Box>
