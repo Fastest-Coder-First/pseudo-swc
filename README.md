@@ -13,6 +13,16 @@
 * Test cases for data population using copilot 
 <img width="1792" alt="Screenshot 2023-06-24 at 6 04 31 PM" src="https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/ca9caa95-8eaf-4f43-8dbd-3e7d2a3273c9">
 
+### Chat GPT Examples
+
+* chat gpt used to create filter api
+![WhatsApp Image 2023-06-24 at 18 28 10](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/17aeb650-445f-4b7b-832a-a05a283ee285)
+
+* mapping created using gpt
+![WhatsApp Image 2023-06-24 at 18 29 47](https://github.com/Fastest-Coder-First/pseudo-swc/assets/85542689/78b26ef8-23b4-42b9-b154-cd76340016bd)
+
+
+
 ### Architure flow
 
 * Architure 
