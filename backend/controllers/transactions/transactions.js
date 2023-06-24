@@ -5,7 +5,7 @@ const {User, Transaction} = require("../../model/user");
 // code for getting trnasactions get request controller function
 exports.getTransactions = async (req, res) => {
     try {
-        const transactions = await User.findById(req.user.user_id).transaction_list;
+        const transactions = await Transaction.find({ userId: req.user.user_id }).exec();
         return res.status(200).json({
             success: true,
             count: transactions.length,
@@ -25,7 +25,7 @@ exports.addTransaction = async (req, res) => {
         // get transaction data from request body according to transaction model
         // console.log(req.body);
         // get transaction data from request body according to transaction model
-        const { description , amount, type, catagory, status, method, card, bank, merchant, comments  } = req.body;
+        const { user_id, description , amount, type, catagory, status, method, card, bank, merchant, comments, currency, date  } = req.body;
         console.log(description);
         // let newTransaction = await Transaction.create({
         //     ...req.body,
@@ -33,11 +33,22 @@ exports.addTransaction = async (req, res) => {
         console.log({...req.body});
         // console.log(newTransaction);
         // save transaction to database
-        var user = await User.findById(req.user.user_id);
-        console.log(user.transaction_list);
-        user.transaction_list.push({"description" : req.body.description});
-        console.log(user.transaction_list);
-        user.save(function(err,result){
+        const newTransaction = new Transaction({
+            user_id: user_id,
+            date: date,
+            amount: amount,
+            description: description,
+            currency: currency,
+            category: catagory,
+            type: type,
+            status: status,
+            method: method,
+            card: card,
+            bank: bank,
+            merchant: merchant,
+            comments: comments,
+          });
+          newTransaction.save(function(err,res){
             if (err){
                 console.log(err);
             }
@@ -66,7 +77,7 @@ exports.addTransaction = async (req, res) => {
 // code for deleting transactions delete request controller function
 exports.deleteTransaction = async (req, res) => {
     try {
-        const transactions = await User.findById(req.user.user_id).transaction_list;
+        const transactions = await Transaction.findByIdAndDelete(req.transaction_id).exec();
         if(!transaction) {
             return res.status(404).json({
                 success: false,
