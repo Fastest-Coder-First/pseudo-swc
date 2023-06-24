@@ -8,7 +8,8 @@ const {
     addTransaction,
     deleteTransaction,
     updateTransaction,
-    filterTransactions
+    filterTransactions,
+    getIncome, getExpenses, getInvestment
 } = require("./controllers/transactions/transactions");
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -54,6 +55,10 @@ app.post("/addTransaction", auth, addTransaction);
 
 // route for getting transactions
 app.get("/getTransactions", auth, getTransactions);
+
+app.get("/getIncome", auth, getIncome);
+app.get("/getExpenses", auth, getExpenses);
+app.get("/getInvestment", auth, getInvestment);
 
 // route for deleting transaction
 app.delete("/deleteTransaction/:id", auth, deleteTransaction);

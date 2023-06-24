@@ -67,6 +67,57 @@ exports.filterTransactions = async(req, res) {
   }
 }
 
+exports.getIncome = async (req, res) => {
+    try {
+        const transactions = await Transaction.find({ user_id: req.user.user_id, type :2 }).exec();
+        return res.status(200).json({
+            success: true,
+            count: transactions.length,
+            data: transactions,
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            error: "Server Error",
+        });
+    }
+}
+
+exports.getExpenses = async (req, res) => {
+    try {
+        const transactions = await Transaction.find({ user_id: req.user.user_id, type : 1 }).exec();
+        return res.status(200).json({
+            success: true,
+            count: transactions.length,
+            data: transactions,
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            error: "Server Error",
+        });
+    }
+}
+
+exports.getInvestment = async (req, res) => {
+    try {
+        const transactions = await Transaction.find({ user_id: req.user.user_id, type : 3  }).exec();
+        return res.status(200).json({
+            success: true,
+            count: transactions.length,
+            data: transactions,
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            error: "Server Error",
+        });
+    }
+}
+
 // code for adding trnasactions post request controller function
 exports.addTransaction = async (req, res) => {
     try {
