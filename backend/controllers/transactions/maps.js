@@ -120,10 +120,68 @@ const methods = new Map ([
     [20, 'Contactless Payment']
 ]);
 
+const currency = new Map([
+    [1, 'USD'],
+    [2, 'EUR'],
+    [3, 'GBP'],
+    [4, 'JPY'],
+    [5, 'CAD'],
+    [6, 'AUD'],
+    [7, 'CHF'],
+    [8, 'CNY'],
+    [9, 'INR'],
+    [10, 'SGD'],
+    [11, 'KRW'],
+    [12, 'MYR'],
+    [13, 'IDR'],
+    [14, 'THB'],
+    [15, 'AED'],
+    [16, 'SAR'],
+    [17, 'QAR'],
+    [18, 'OMR'],
+    [19, 'JOD'],
+    [20, 'ILS'],
+    [21, 'NZD'],
+    [22, 'ZAR'],
+    [23, 'BRL'],
+    [24, 'MXN'],
+    [25, 'RUB'],
+    [26, 'TRY']
+]);
+
 module.exports = {
     categories,
     status,
     types,
     methods,
+    currency,
 };
 
+const currencyShortForms = new Map([
+    ['USD', 'United States Dollar'],
+    ['EUR', 'Euro'],
+    ['GBP', 'British Pound Sterling'],
+    ['JPY', 'Japanese Yen'],
+    ['CAD', 'Canadian Dollar'],
+    ['AUD', 'Australian Dollar'],
+    ['CHF', 'Swiss Franc'],
+    ['CNY', 'Chinese Yuan Renminbi'],
+    ['INR', 'Indian Rupee'],
+    ['SGD', 'Singapore Dollar'],
+    ['KRW', 'South Korean Won'],
+    ['MYR', 'Malaysian Ringgit'],
+    ['IDR', 'Indonesian Rupiah'],
+    ['THB', 'Thai Baht'],
+    ['AED', 'United Arab Emirates Dirham'],
+    ['SAR', 'Saudi Arabian Riyal'],
+    ['QAR', 'Qatari Riyal'],
+    ['OMR', 'Omani Rial'],
+    ['JOD', 'Jordanian Dinar'],
+    ['ILS', 'Israeli Shekel'],
+    ['NZD', 'New Zealand Dollar'],
+    ['ZAR', 'South African Rand'],
+    ['BRL', 'Brazilian Real'],
+    ['MXN', 'Mexican Peso'],
+    ['RUB', 'Russian Ruble'],
+    ['TRY', 'Turkish Lira']
+]);
