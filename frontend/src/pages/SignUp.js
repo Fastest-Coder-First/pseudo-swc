@@ -32,8 +32,8 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
   }).then(function (response) {
-    console.log(response.data);
-    if (response.status === 200) {
+    console.log(response);
+    if (response.status === 201) {
       navigate('/login');
     }
   })

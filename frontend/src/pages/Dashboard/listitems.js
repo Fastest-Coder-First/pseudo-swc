@@ -12,26 +12,26 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import InsightsIcon from '@mui/icons-material/Insights';
-
+import { Link, useLocation } from "react-router-dom";
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Expenses" />
+      <Link to={'expenses'} style={{"textDecoration": "none"}}><ListItemText primary="Expenses" /></Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AttachMoneyIcon />
       </ListItemIcon>
-      <ListItemText primary="Income" />
+      <Link to={'income'} style={{"textDecoration": "none"}}><ListItemText primary="Income" /></Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <AccountBalanceIcon />
       </ListItemIcon>
-      <ListItemText primary="Investments" />
+      <Link to={'investment'} style={{"textDecoration": "none"}}><ListItemText primary="Investments" /></Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
