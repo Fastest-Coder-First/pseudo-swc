@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-
+// import model user
+const User = require("../model/user");
 const config = process.env;
 
 const verifyToken = (req, res, next) => {
@@ -12,6 +13,14 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     req.user = decoded;
+    // get user by id from database and save it to const user variable
+    const user = User.findById(req.user.user_id);
+    req.user = {
+      ...req.user,
+      'first_name': user.first_name,
+      'last_name': user.last_name,
+    }
+    console.log(decoded);
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }
