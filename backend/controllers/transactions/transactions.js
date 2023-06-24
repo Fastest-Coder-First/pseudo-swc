@@ -106,11 +106,11 @@ exports.updateTransaction = async (req, res) => {
 function createDisplayJSON (input) {
     return new Object ({
         description: input.description,
-        type: input.type,
-        category: input.category,
+        type: input.type, // Enum
+        category: input.category, // Enum
         amount: input.currency + String(input.amount),
-        status: input.status,
-        method: input.method,
+        status: input.status, // Enum
+        method: input.method, // Enum
         card: input.card,
         bank: input.bank,
         merchant: input.merchant,
