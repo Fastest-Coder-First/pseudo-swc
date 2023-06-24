@@ -19,11 +19,24 @@ exports.getTransactions = async (req, res) => {
 // code for adding trnasactions post request controller function
 exports.addTransaction = async (req, res) => {
     try {
-        const { text, amount } = req.body;
+        // get transaction data from request body according to transaction model
+        const { description, type, category, amount, status, method, card, bank, merchant, comments } = req.body;
         const transactions = await User.findById(req.user.user_id).transaction_list;
+        const newTransaction = new Transaction({
+            description,
+            type,
+            category,
+            amount,
+            status,
+            method,
+            card,
+            bank,
+            merchant,
+            comments,
+        });
         return res.status(201).json({
             success: true,
-            data: transaction,
+            data: transactions,
         });
     } catch (err) {
         if(err.name === 'ValidationError') {
